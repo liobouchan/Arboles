@@ -22,4 +22,40 @@ void main(){
     }
     fclose(cfPtr);
   }
+
+  do{
+    Menu();
+    scanf("%d" , &opcion);
+    switch( opcion ){
+      case 1:
+      printf("\nPREORDEN:\n\n");
+      Preorden(arbol);
+
+      printf("\n\nINORDEN:\n\n");
+      Inorden(arbol);
+
+      printf("\n\nPOSTORDEN:\n\n");
+      Postorden(arbol);
+
+      printf("\n\n");
+      break;
+      
+      case 2:
+        printf("\nELEMENTO A BUSCAR:");
+        scanf(" %c", &elemento);
+        temporal = Buscar(arbol,elemento);
+      
+      if(temporal){
+        printf("\nSE ENCONTRO AL ELEMENTO: %c\n", temporal->elemento);
+        printf("\nCAMINO: "); Camino(arbol, elemento);
+        printf("\nNIVEL: %d", temporal->nivel);
+        printf("\nPADRE: %c", Padre(arbol, elemento));
+        Leernodo(arbol, elemento);
+        printf("\n\n");
+      }
+      else
+        printf("NO EXISTE.\n\n");
+      break;
+    }
+  }while(opcion != 2);
 }
