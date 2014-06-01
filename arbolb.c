@@ -131,3 +131,20 @@ void Leernodo(Arbol* arbol, char elemento){
     Hijo_derecho(arbol, elemento);
   }
 }
+
+int altura (Arbol *arbol , int nivel) {
+  if(!arbol)
+    return 0;
+  else {
+    int alturaI;
+    int alturaD;
+    
+    alturaI = altura (arbol -> hijo_izquierdo,nivel);
+    alturaD = altura (arbol -> hijo_derecho,nivel);
+    
+    if(alturaI > alturaD) 
+      return alturaI + 1;
+    else
+      return alturaD + 1;
+  }
+}

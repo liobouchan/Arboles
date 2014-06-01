@@ -56,6 +56,9 @@ void main(){
       else
         printf("NO EXISTE.\n\n");
       break;
+      case 3:
+        printf("\nAltura: %d", altura(arbol , nivel));
+      break;
     }
-  }while(opcion != 2);
+  }while(opcion != 7);
 }
