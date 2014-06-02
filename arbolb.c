@@ -16,7 +16,8 @@ void Menu(){
   printf("\n8)Alturas\n");
   printf("\n9)Tipo de NODO\n");
   printf("\n10)Máximo y Mínimo del Arbol");
-  printf("\n11)Salir\n");
+  printf("\n11)Contar Nodos");
+  printf("\n12)Salir\n");
 }
 
 /** Crea un arbol temporal inicializando los hijos y
@@ -53,6 +54,16 @@ void Preorden(Arbol* arbol){
     Preorden(arbol->hijo_izquierdo);
     Preorden(arbol->hijo_derecho);
   }
+}
+
+/** Recorrido Preorden */
+int ContaNodos(Arbol* arbol,int contador){
+  if(arbol){
+    contador++;
+      contador=ContaNodos(arbol->hijo_izquierdo,contador);
+      contador=ContaNodos(arbol->hijo_derecho,contador);
+  }
+  return contador;
 }
 
 /** [Alturas description] */
@@ -294,12 +305,10 @@ int modificarNodo(Arbol**nA ,Arbol*a,char e){
 void menuSub(){
   printf("\n\nSubArbol Binario\n");
   printf("\n1)Recorridos\n");
-  printf("\n2)Buscar\n");
-  printf("\n3)Insertar nuevo nodo \n");
-  printf("\n4)Modificar \n");
-  printf("\n5)Eliminar \n");
-  printf("\n6)Regresar al menu anterior \n");
-
+  
+  printf("\n2)Alturas \n");
+  printf("\n3)Conteo \n");
+  printf("\n4)Regresar al menu anterior \n");
 }
 
 int tipo(Arbol* raiz, Arbol*nodo){
