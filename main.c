@@ -8,6 +8,7 @@ void main(){
   Arbol *temporal;
   ArbolBin* subarbol;
   char elemento;
+  int val;
   char e , n , sub;
   int opcion, nivel = 1;
   arbol = NULL;
@@ -213,6 +214,32 @@ void main(){
       case 8:
         printf("\nLa Altura de cada nodo es : \n");
         Alturas(arbol);
+      break;
+      case 9:
+        printf("Escribe el elemnto\n");
+        scanf("%c",&e);
+        temporal=Buscar(arbol,e);
+        if(temporal==NULL){
+          printf("EL nodo no existe\n");
+        }else{
+          val=tipo(arbol,temporal);
+          if(val==1){
+            printf("El nodo es raiz \n");
+          }
+          if (val==2){
+            printf("El nodo es hoja\n");
+          }
+          if (val==3){
+           printf("El nodo es interno\n");
+          }
+        }
+      break;
+      case 10:
+        temporal=maximo(arbol);
+        printf("El valor maximo del arbol es: %c\n", temporal->elemento);
+        temporal=minimo(arbol);
+        printf("El valor minimo del arbol es: %c\n",temporal->elemento );
+      break;
     }
-  }while(opcion <= 8);
+  }while(opcion <= 10);
 }

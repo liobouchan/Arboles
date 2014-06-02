@@ -14,7 +14,9 @@ void Menu(){
   printf("\n6)SubArboles");
   printf("\n7)Altura de un arbol\n");
   printf("\n8)Alturas\n");
-  printf("\n9)Salir\n");
+  printf("\n9)Tipo de NODO\n");
+  printf("\n10)Máximo y Mínimo del Arbol");
+  printf("\n11)Salir\n");
 }
 
 /** Crea un arbol temporal inicializando los hijos y
@@ -56,8 +58,9 @@ void Preorden(Arbol* arbol){
 /** [Alturas description] */
 void Alturas(Arbol* arbol){
   if(arbol){
-    printf("%2c",arbol->elemento);
-    printf("%d", (arbol->nivel)-1 );
+    printf("ELEMENTO: %2c\n",arbol->elemento);
+    printf("ALTURA: %d\n", (arbol->nivel)-1 );
+    printf("Nivel:  %d\n", arbol->nivel );
     Alturas(arbol->hijo_izquierdo);
     Alturas(arbol->hijo_derecho);
   }
@@ -299,7 +302,18 @@ void menuSub(){
 
 }
 
+int tipo(Arbol* raiz, Arbol*nodo){
+  if(raiz->elemento == nodo->elemento){
+    return 1;
+  }
 
+  if(nodo->hijo_izquierdo ==NULL && nodo->hijo_derecho==NULL){
+    return 2;
+  }else{
+    return 3;
+  }
+
+}
 
 Arbol* crearNodo(int nivel,char e){
   Arbol *temporal = NULL;
