@@ -10,6 +10,11 @@ typedef struct Arbol{
   struct Arbol* hijo_derecho;
   struct Arbol* hijo_izquierdo;
 }Arbol;
+typedef struct {
+	Arbol *raiz;
+	int contNodos;
+	char tipo[100];
+}ArbolBin;
 
 void Menu(); 
 void Insertar(Arbol ** arbol, char elemento, int nivel);
@@ -22,5 +27,14 @@ void Hijo_derecho(Arbol* arbol, char elemento);
 void Hijo_izquierdo(Arbol* arbol, char elemento);
 void Camino(Arbol* arbol, char elemento);
 Arbol* Buscar(Arbol* arbol, char elemento);
+Arbol* maximo(Arbol* t);
+Arbol* minimo(Arbol* t);
+int borrarNodo(Arbol** nA, char e);
+ArbolBin* crearSubArbol(Arbol* nodoRaiz);
+int insertarNodo(Arbol**nA, Arbol* nuevo);
+int modificarNodo(Arbol**nA ,Arbol*a,char e);
+void menuSub();
+Arbol* crearNodo(int nivel,char e);
+
 
 #endif

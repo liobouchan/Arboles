@@ -8,8 +8,12 @@ void Menu(){
   printf("\n\n====OPERACIONES ARBOL BINARIO======\n");
   printf("\n1)Recorridos\n");
   printf("\n2)Buscar\n");
-  printf("\n3)Altura del Arbol\n");
-  printf("\n4)Salir\n");
+  printf("\n3)Insertar nuevo nodo \n");
+  printf("\n4)Modificar \n");
+  printf("\n5)Eliminar \n");
+  printf("\n6)SubArboles");
+  printf("\n7)Altura de un arbol\n");
+  printf("\n8)Salir\n");
 }
 
 /** Crea un arbol temporal inicializando los hijos y
@@ -174,4 +178,122 @@ int altura (Arbol *arbol , int nivel) {
     else
       return alturaD + 1;
   }
+}
+
+Arbol* maximo(Arbol* t){
+  if(t==NULL){
+    printf("Arbol vacio \n");t
+    return NULL;
+  }
+  if(t->hijo_derecho==NULL){
+    return t;
+  }
+  return maximo(t->hijo_derecho);
+}
+
+Arbol* minimo(Arbol* t){
+  if(t==NULL){
+    printf("Arbol vacio \n");t
+    return NULL;
+  }
+  if(t->hijo_izquierdo==NULL){
+    return t;
+  }
+  return minimo(t->hijo_izquierdo);
+}
+
+int borrarNodo(Arbol** nA, char e){
+  Arbol* aux, * min;
+  if(*nA==NULL){
+    printf("Arbol vacio \n");
+    return 0;
+  }
+  if((*nA)->elemento==e){
+    aux=(*nA);
+    min=minimo((*nA)->hijo_derecho);
+    min->hijo_izquierdo=(*nA)->hijo_izquierdo;
+    min->hijo_derecho=(*nA)->hijo_derecho;
+    (*nA)=min;
+    free(aux);
+    return 1;
+  }
+
+  if(e<(*nA)->elemento){
+    borrarNodo(&((*nA)->hijo_izquierdo),e);
+  }else{
+    borrarNodo(&((*nA)->hijo_derecho),e);
+  }
+  return 1;
+}
+
+ArbolBin* crearSubArbol(Arbol* nodoRaiz){
+  ArbolBin *arbol=NULL;
+  arbol=(ArbolBin *)malloc(sizeof(ArbolBin));
+  arbol->raiz=nodoRaiz;
+  arbol->contNodos=1;
+  arbol->tipo=NULL;
+  return arbol;
+}
+
+int insertarNodo(Arbol**nA, Arbol* nuevo){
+  if ((*nA)==NULL){
+    (*nA)==nuevo;
+    return 1;
+  }
+  if(nuevo->elemento==(*nA)->elemento){
+    printf("El nodo ya existe. \n");
+    return -1;
+  }
+
+  if(nuevo->elemento < (*nA)->elemento){
+    return insertarNodo(&((*nA)->hijo_izquierdo),nuevo);
+  }else{
+    return insertarNodo(&((*nA)->hijo_derecho),nuevo);
+  }
+   
+
+}
+
+int modificarNodo(Arbol**nA ,Arbol*a,char e){
+  if((*nA)==NULL){
+    printf("Arbol vacio\n");
+    return 0;
+  }
+  if((*nA)->elemento == e){
+    printf("El elemento ya existe en otro nodo\n");
+    return 0;
+  }
+  if (a->elemento ==(*nA)->elemento)  {
+    (*nA)->elemento=e;
+    return 1;
+  }
+
+  if(e<(*nA)->elemento){
+    return modificarNodo(&((*nA)->hijo_izquierdo),a,e);
+  }else{
+    return modificarNodo(&((*nA)->hijo_derecho),a,e);
+  }
+
+
+}
+
+void menuSub(){
+  printf("\n\nSubArbol Binario\n");
+  printf("\n1)Recorridos\n");
+  printf("\n2)Buscar\n");
+  printf("\n3)Insertar nuevo nodo \n");
+  printf("\n4)Modificar \n");
+  printf("\n5)Eliminar \n");
+  printf("\n6)Regresar al menu anterior \n");
+
+}
+
+Arbol* crearNodo(int nivel,char e){
+  Arbol *temporal = NULL;
+  temporal = (Arbol *)malloc(sizeof(Arbol));
+  temporal->hijo_izquierdo = NULL;
+  temporal->hijo_derecho = NULL;
+  temporal->elemento = e;
+  temporal->nivel = nivel;
+  return temporal;
 }
