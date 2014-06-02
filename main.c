@@ -69,6 +69,9 @@ void main(){
         printf("NO EXISTE.\n\n");
       break;
       case 3:
+      /** 
+       * Determina la altura del arbol
+       */
         printf("\nAltura: %d", altura(arbol , nivel));
       break;
     }
