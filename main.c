@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+//Incluimos el archivo cabecera
 #include "arbolb.h"
 
 void main(){
+  //Declaramos las variables que vallamos a utilizar
   Arbol *arbol;
   Arbol *temporal;
   char elemento;
@@ -10,6 +12,9 @@ void main(){
   arbol = NULL;
   FILE *cfPtr;
 
+  /*Abrimos el archivo TXT donde se encuentran las letras que van a entrar
+   * en el arbol, leemos el archivo e insertamos nodo por nodo
+   */
   fopen("arbol.txt", "r");
   if ((cfPtr = fopen("arbol.txt", "r")) == NULL)
     printf("\aEL ARCHIVO NO EXISTE\n");
@@ -24,10 +29,12 @@ void main(){
   }
 
   do{
+    //Desplegamos el Menú
     Menu();
     scanf("%d" , &opcion);
     switch( opcion ){
       case 1:
+      //Esta opcion nos muestra todos los recorridos 
       printf("\nPREORDEN:\n\n");
       Preorden(arbol);
 
@@ -41,6 +48,11 @@ void main(){
       break;
       
       case 2:
+        /*Buscamos si existe un elementro y muestra:
+          nivel
+          Hijos
+          Camino para llegar a dicho punto
+        */
         printf("\nELEMENTO A BUSCAR:");
         scanf(" %c", &elemento);
         temporal = Buscar(arbol,elemento);
