@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-//Incluimos el archivo cabecera
 #include "arbolb.h"
 
 void main(){
@@ -9,6 +8,7 @@ void main(){
   Arbol *temporal;
   ArbolBin* subarbol;
   char elemento;
+  char e , n , sub;
   int opcion, nivel = 1;
   arbol = NULL;
   FILE *cfPtr;
@@ -36,19 +36,18 @@ void main(){
     setbuf(stdin,NULL);
     switch( opcion ){
       case 1:
-      //Esta opcion nos muestra todos los recorridos 
-      printf("\nPREORDEN:\n\n");
-      Preorden(arbol);
+        //Esta opcion nos muestra todos los recorridos 
+        printf("\nPREORDEN:\n\n");
+        Preorden(arbol);
 
-      printf("\n\nINORDEN:\n\n");
-      Inorden(arbol);
+        printf("\n\nINORDEN:\n\n");
+        Inorden(arbol);
 
-      printf("\n\nPOSTORDEN:\n\n");
-      Postorden(arbol);
+        printf("\n\nPOSTORDEN:\n\n");
+        Postorden(arbol);
 
-      printf("\n\n");
-      break;
-      
+        printf("\n\n");
+        break;
       case 2:
         /*Buscamos si existe un elementro y muestra:
           nivel
@@ -58,32 +57,28 @@ void main(){
         printf("\nELEMENTO A BUSCAR:");
         scanf(" %c", &elemento);
         temporal = Buscar(arbol,elemento);
-      
-      if(temporal){
-        printf("\nSE ENCONTRO AL ELEMENTO: %c\n", temporal->elemento);
-        printf("\nCAMINO: "); Camino(arbol, elemento);
-        printf("\nNIVEL: %d", temporal->nivel);
-        printf("\nPADRE: %c", Padre(arbol, elemento));
-        Leernodo(arbol, elemento);
-        printf("\n\n");
-      }
-      else
-        printf("NO EXISTE.\n\n");
+        if(temporal){
+          printf("\nSE ENCONTRO AL ELEMENTO: %c\n", temporal->elemento);
+          printf("\nCAMINO: "); Camino(arbol, elemento);
+          printf("\nNIVEL: %d", temporal->nivel);
+          printf("\nPADRE: %c", Padre(arbol, elemento));
+          Leernodo(arbol, elemento);
+          printf("\n\n");
+        }
+        else
+          printf("NO EXISTE.\n\n");
       break;
       case 3:
-        char e;
+        //char e;
         printf("Escriba el valor del elemento\n");
         scanf("%c",&e);
         setbuf(stdin,NULL);
         temporal=crearNodo(nivel,e);
-        if (insertarNodo(&arbol,temporal)==1){
-          printf("Nodo insertado con exito\n");
-        }
-
+        Insertar(&arbol , e , nivel);
       break;
 
       case 4:
-        char e,n;
+        //char e,n;
         printf("Escriba el elemento que desea modificar\n");
         scanf("%c",&e);
         setbuf(stdin,NULL);
@@ -92,33 +87,35 @@ void main(){
           printf("El nodo no existe\n");
         }else{
           printf("Escriba el nuevo valor\n");
-          scanf("%c",&n);
+          fflush(stdin);
           setbuf(stdin,NULL);
+          scanf(" %c",&n);
           if(modificarNodo(&arbol,temporal,n)==1){
             printf("Nodo modificado con exito\n");
           }
         }
-
       break;
+
       case 5:
-      char e;
-      printf("Escriba el valor del elemento a elminar\n");
+        //char e;
+        printf("Escriba el valor del elemento a elminar\n");
         scanf("%c",&e);
         setbuf(stdin,NULL);
         if(borrarNodo(&arbol,e)==1){
           printf("Nodo eliminado con exito\n");
         }
       break;
+
       case 6:
         system("clear");
-        char sub;
+        //char sub;
         printf("Escriba el elemento del nodo raiz del subarbol\n");
         scanf("%c",&sub);
         setbuf(stdin,NULL);
         subarbol=(ArbolBin*)malloc(sizeof(ArbolBin));
-        subarbol->raiz=Buscar(&arbol,sub);
+        subarbol->raiz=Buscar(arbol,sub);
         subarbol->contNodos=0;
-        subarbol->tipo=NULL;
+        //subarbol->tipo=NULL;
         if(subarbol->raiz !=NULL){
           do{          
             menuSub();
@@ -159,7 +156,7 @@ void main(){
                 printf("NO EXISTE.\n\n");
              break;
              case 3:
-              char e;
+              ////char e;
               printf("Escriba el valor del elemento\n");
               scanf("%c",&e);
               setbuf(stdin,NULL);
@@ -170,7 +167,7 @@ void main(){
 
              break;
              case 4:
-                char e,n;
+                //char e,n;
                 printf("Escriba el elemento que desea modificar\n");
                 scanf("%c",&e);
                 setbuf(stdin,NULL);
@@ -188,7 +185,7 @@ void main(){
 
               break;
               case 5:
-                char e;
+                //char e;
                 printf("Escriba el valor del elemento a elminar\n");
                   scanf("%c",&e);
                   setbuf(stdin,NULL);
@@ -213,6 +210,9 @@ void main(){
        */
         printf("\nAltura: %d", altura(arbol , nivel));
       break;
+      case 8:
+        printf("\nLa Altura de cada nodo es : \n");
+        Alturas(arbol);
     }
-  }while(opcion <= 7);
+  }while(opcion <= 8);
 }

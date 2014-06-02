@@ -13,7 +13,8 @@ void Menu(){
   printf("\n5)Eliminar \n");
   printf("\n6)SubArboles");
   printf("\n7)Altura de un arbol\n");
-  printf("\n8)Salir\n");
+  printf("\n8)Alturas\n");
+  printf("\n9)Salir\n");
 }
 
 /** Crea un arbol temporal inicializando los hijos y
@@ -27,7 +28,7 @@ void Insertar(Arbol ** arbol, char elemento, int nivel){
     temporal->hijo_izquierdo = temporal->hijo_derecho = NULL;
     temporal->elemento = elemento;
     temporal->nivel = nivel;
-    *arbol = temporal;
+    (*arbol) = temporal;
     return;
   }
 
@@ -49,6 +50,16 @@ void Preorden(Arbol* arbol){
     printf("%2c",arbol->elemento);
     Preorden(arbol->hijo_izquierdo);
     Preorden(arbol->hijo_derecho);
+  }
+}
+
+/** [Alturas description] */
+void Alturas(Arbol* arbol){
+  if(arbol){
+    printf("%2c",arbol->elemento);
+    printf("%d", (arbol->nivel)-1 );
+    Alturas(arbol->hijo_izquierdo);
+    Alturas(arbol->hijo_derecho);
   }
 }
 
@@ -182,7 +193,7 @@ int altura (Arbol *arbol , int nivel) {
 
 Arbol* maximo(Arbol* t){
   if(t==NULL){
-    printf("Arbol vacio \n");t
+    printf("Arbol vacio \n");
     return NULL;
   }
   if(t->hijo_derecho==NULL){
@@ -193,7 +204,7 @@ Arbol* maximo(Arbol* t){
 
 Arbol* minimo(Arbol* t){
   if(t==NULL){
-    printf("Arbol vacio \n");t
+    printf("Arbol vacio \n");
     return NULL;
   }
   if(t->hijo_izquierdo==NULL){
@@ -210,7 +221,7 @@ int borrarNodo(Arbol** nA, char e){
   }
   if((*nA)->elemento==e){
     aux=(*nA);
-    min=minimo((*nA)->hijo_derecho);
+    min = minimo((*nA)->hijo_derecho);
     min->hijo_izquierdo=(*nA)->hijo_izquierdo;
     min->hijo_derecho=(*nA)->hijo_derecho;
     (*nA)=min;
@@ -231,7 +242,7 @@ ArbolBin* crearSubArbol(Arbol* nodoRaiz){
   arbol=(ArbolBin *)malloc(sizeof(ArbolBin));
   arbol->raiz=nodoRaiz;
   arbol->contNodos=1;
-  arbol->tipo=NULL;
+  //arbol->tipo=NULL;
   return arbol;
 }
 
@@ -287,6 +298,8 @@ void menuSub(){
   printf("\n6)Regresar al menu anterior \n");
 
 }
+
+
 
 Arbol* crearNodo(int nivel,char e){
   Arbol *temporal = NULL;
