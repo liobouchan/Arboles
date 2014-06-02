@@ -3,10 +3,11 @@
 #include "arbolb.h"
 
 void Menu(){
-  printf("\n\nArbol Binario\n");
+  printf("\n\n====OPERACIONES ARBOL BINARIO======\n");
   printf("\n1)Recorridos\n");
   printf("\n2)Buscar\n");
-  printf("\n3)Salir\n");
+  printf("\n3)Altura del Arbol\n");
+  printf("\n4)Salir\n");
 }
 
 void Insertar(Arbol ** arbol, char elemento, int nivel){

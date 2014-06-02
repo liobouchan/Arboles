@@ -60,5 +60,5 @@ void main(){
         printf("\nAltura: %d", altura(arbol , nivel));
       break;
     }
-  }while(opcion != 7);
+  }while(opcion != 4);
 }
