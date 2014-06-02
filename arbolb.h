@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/** Struct a utilizar */
 typedef struct Arbol{
   char elemento;
   int nivel;

@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "arbolb.h"
 
+/** Menú que se va usar en todo el programa 
+ */
 void Menu(){
   printf("\n\n====OPERACIONES ARBOL BINARIO======\n");
   printf("\n1)Recorridos\n");
@@ -10,6 +12,10 @@ void Menu(){
   printf("\n4)Salir\n");
 }
 
+/** Crea un arbol temporal inicializando los hijos y
+ *  asignando el nivel a dicho arbol, cada que se agrega un nodo
+ *  se hace +1 en el nivel.
+ */
 void Insertar(Arbol ** arbol, char elemento, int nivel){
   Arbol *temporal = NULL;
   if(!(*arbol)){
@@ -33,6 +39,7 @@ void Insertar(Arbol ** arbol, char elemento, int nivel){
     return;
 }
 
+/** Recorrido Preorden */
 void Preorden(Arbol* arbol){
   if(arbol){
     printf("%2c",arbol->elemento);
@@ -41,6 +48,7 @@ void Preorden(Arbol* arbol){
   }
 }
 
+/** Recorrido Inordern */
 void Inorden(Arbol* arbol){
   if(arbol){
     Inorden(arbol->hijo_izquierdo);
@@ -49,6 +57,7 @@ void Inorden(Arbol* arbol){
   }
 }
 
+/** Recorrido de PostOrden */
 void Postorden(Arbol* arbol){
   if(arbol){
     Postorden(arbol->hijo_izquierdo);
@@ -57,6 +66,9 @@ void Postorden(Arbol* arbol){
   }
 }
 
+/** Compara con el elemento enviado hasta buscar que el nodo coincida
+ * Y así regresar el valor de padre 
+ */
 char Padre(Arbol* arbol, char elemento){
   char aux = '\0';
   int x;
@@ -74,6 +86,7 @@ char Padre(Arbol* arbol, char elemento){
   }while(arbol);
 }
 
+/** Muestra el valor del hijo derecho del nodo a buscar */
 void Hijo_derecho(Arbol* arbol, char elemento){
   if(elemento < arbol->elemento)
     Hijo_derecho(arbol->hijo_izquierdo, elemento);
@@ -86,6 +99,7 @@ void Hijo_derecho(Arbol* arbol, char elemento){
       printf("\nHIJO DERECHO: %c", arbol->hijo_derecho->elemento);
 }
 
+/** Muestra el valor del hijo izquierdo */
 void Hijo_izquierdo(Arbol* arbol, char elemento){
   if(elemento < arbol->elemento)
     Hijo_izquierdo(arbol->hijo_izquierdo, elemento);
@@ -98,6 +112,10 @@ void Hijo_izquierdo(Arbol* arbol, char elemento){
       printf("\nHIJO IZQUIERDO: %c", arbol->hijo_izquierdo->elemento);
 }
 
+/** Muestra el camino de acuerdo a arboles binarios
+ *  por donde va pasando lo va imprimiendo hasta llegar 
+ *  a donde tiene que llegar 
+ */
 void Camino(Arbol* arbol, char elemento){
   if(elemento < arbol->elemento){
     printf("%c", arbol->elemento);
@@ -111,6 +129,9 @@ void Camino(Arbol* arbol, char elemento){
     printf("%c", arbol->elemento);
 }
 
+/** Busca un nodo y recorre hasta que el valor dado
+ * es encontrado
+ */
 Arbol* Buscar(Arbol* arbol, char elemento){
   if(!arbol)
     return NULL;
@@ -122,6 +143,7 @@ Arbol* Buscar(Arbol* arbol, char elemento){
     return arbol;
 }
 
+/** Lee el hijo izquierdo y derecho del nodo en que está posicionado */
 void Leernodo(Arbol* arbol, char elemento){
   if(elemento < arbol->elemento)
     Leernodo(arbol->hijo_izquierdo, elemento);
@@ -133,6 +155,10 @@ void Leernodo(Arbol* arbol, char elemento){
   }
 }
 
+/** Recorre hasta el último hijo izq y derecho
+ *  los compara y agarra el mayor para mostrarlo
+ *  de acuerdo a la formula de altura de un arbol.
+ */
 int altura (Arbol *arbol , int nivel) {
   if(!arbol)
     return 0;
