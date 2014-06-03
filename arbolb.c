@@ -227,28 +227,32 @@ Arbol* minimo(Arbol* t){
   return minimo(t->hijo_izquierdo);
 }
 
-int borrarNodo(Arbol** nA, char e){
-  Arbol* aux, * min;
-  if(*nA==NULL){
-    printf("Arbol vacio \n");
-    return 0;
+Arbol* borrarNodo(Arbol** arbol, char e){
+  Arbol* aux, **min, *aux2 , *aux3;
+  if((*arbol)->elemento==e){
+    aux=(*arbol);
+    if((*arbol)->hijo_derecho != NULL ){
+    aux3 = minimo(((*arbol)->hijo_derecho));
+    min = &aux3;
+    aux2 = *min;
+    (*min) = (*min)->hijo_derecho;
+    aux2->hijo_izquierdo = aux->hijo_izquierdo;
+    aux2->hijo_derecho = aux->hijo_derecho;
+    *arbol = aux2;
   }
-  if((*nA)->elemento==e){
-    aux=(*nA);
-    min = minimo((*nA)->hijo_derecho);
-    min->hijo_izquierdo=(*nA)->hijo_izquierdo;
-    min->hijo_derecho=(*nA)->hijo_derecho;
-    (*nA)=min;
+  else{
+    (*arbol) = (*arbol)->hijo_izquierdo;
     free(aux);
-    return 1;
+    return *arbol;
+  }
   }
 
-  if(e<(*nA)->elemento){
-    borrarNodo(&((*nA)->hijo_izquierdo),e);
+  if(e<(*arbol)->elemento){
+    (*arbol)->hijo_izquierdo = borrarNodo(&((*arbol)->hijo_izquierdo),e);
   }else{
-    borrarNodo(&((*nA)->hijo_derecho),e);
+    (*arbol)->hijo_derecho = borrarNodo(&((*arbol)->hijo_derecho),e);
   }
-  return 1;
+  return *arbol;
 }
 
 ArbolBin* crearSubArbol(Arbol* nodoRaiz){

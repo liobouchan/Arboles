@@ -29,7 +29,7 @@ void Camino(Arbol* arbol, char elemento);
 Arbol* Buscar(Arbol* arbol, char elemento);
 Arbol* maximo(Arbol* t);
 Arbol* minimo(Arbol* t);
-int borrarNodo(Arbol** nA, char e);
+Arbol* borrarNodo(Arbol** nA, char e);
 ArbolBin* crearSubArbol(Arbol* nodoRaiz);
 int insertarNodo(Arbol**nA, Arbol* nuevo);
 int modificarNodo(Arbol**nA ,Arbol*a,char e);

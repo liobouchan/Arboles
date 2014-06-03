@@ -102,7 +102,7 @@ void main(){
         printf("Escriba el valor del elemento a elminar\n");
         scanf("%c",&e);
         setbuf(stdin,NULL);
-        if(borrarNodo(&arbol,e)==1){
+        if(borrarNodo(&arbol,e)!=NULL){
           printf("Nodo eliminado con exito\n");
         }
       break;
